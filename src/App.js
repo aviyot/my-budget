@@ -8,11 +8,11 @@ import firebase from "./config/fbConfig";
 import "./App.css";
 import Navigator from "./components/Navigator";
 
+
 function App() {
  
   const [userSignIn, setUserSignIn] = useState(false);
   const [authState, setAuthState] = useState(false);
-  // const history = useHistory();
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {

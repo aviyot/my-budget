@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { addToFirestore } from "../functions/firebase/addData";
 import deleteDocument from "../functions/firebase/deleteData";
+import updateData from "../functions/firebase/updateData";
+
 
 const DataAction = props => {
-  const [edit, setEdit] = useState(false);
+
+const [edit,setEdited] = useState(false);
 
   const handleClick = e => {
     const action = e.target.id;
@@ -11,16 +14,21 @@ const DataAction = props => {
     switch (action) {
       case "add":
         addToFirestore("expenses", props.expense);
+        props.setDataAdded(true);
         break;
       case "edit":
         props.onEdit();
+        setEdited(!edit);
         break;
       case "delete":
         deleteDocument("expenses", props.selectedExpense.id);
         break;
       case "update":
-        console.log(action);
+        updateData("expenses",props.selectedExpense.id,props.expense);
+        props.setDataAdded(true);
         break;
+      default:
+
     }
   };
 
@@ -30,17 +38,20 @@ const DataAction = props => {
       <input
         type="button"
         id="delete"
-        disabled={props.selectedId ? false : true}
-        value="Delete"
+/*         disabled={props.selectedId ? false : true}
+ */ 
+disabled = {!props.dataSelected}      
+ value="Delete"
         onClick={handleClick}
       />
       <input
         type="button"
         id="edit" /* disabled={props.selectedExpense.id ?false:true} */
         value="Edit"
+        disabled = {!props.dataSelected}
         onClick={handleClick}
       />
-      <input type="button" id="update" value="Update" onClick={handleClick} />
+      <input type="button" id="update" disabled = {!edit} value="Update" onClick={handleClick} />
     </div>
   );
 };

@@ -1,8 +1,13 @@
 import firebase from "../../config/fbConfig";
 
 const getData = (collection, setExpenses) => {
-  const unsubcribe = firebase
+
+  const user = firebase.auth().currentUser;
+
+  firebase
     .firestore()
+    .collection("users")
+    .doc(user.uid)
     .collection(collection)
     .onSnapshot(function(querySnapshot) {
       const expensesFir = [];
@@ -12,6 +17,18 @@ const getData = (collection, setExpenses) => {
       });
       setExpenses([...expensesFir]);
     });
+
+     /* firebase
+    .firestore()
+    .collection(collection)
+    .onSnapshot(function(querySnapshot) {
+      const expensesFir = [];
+
+      querySnapshot.forEach(function(doc) {
+        expensesFir.push(doc);
+      });
+      setExpenses([...expensesFir]);
+    }); */
 
   /*   firebase
     .firestore()

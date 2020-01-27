@@ -1,25 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, {useState, useEffect } from "react";
 import deleteDocument from "../functions/firebase/deleteData";
 
 function Data(props) {
-  const [selected, setSelected] = useState(false);
 
-  const selectionData = selectedExpense => {
-    if (selectedExpense) {
-      props.selectionData(selectedExpense);
+  const [selected, setSelected] = useState(false);
+  const [selectedData,setSelectedData] = useState(null);
+
+  useEffect(() => {
+
+    if (selectedData) {
+      props.selectionData(selectedData,selected);
     }
-  };
+ 
+   })
+
+  const handleClick = (_selectedData) => {
+
+    setSelectedData(_selectedData);
+
+    setSelected(preSelected => {
+      if(selectedData){
+           if(_selectedData.id === selectedData.id){
+            //selectionData(null);
+           return !preSelected  
+           }
+            else {
+            return preSelected
+            }
+      }
+      else {
+        return true;
+ 
+      }
+    });
+
+  }
+  
+
+ 
 
   const Exp = props.expenses.map((exp, index) => {
     return (
       <tr
         key={exp.id}
-        className={selected ? "selected" : ""}
+        className={selected && (selectedData.id == exp.id) ? "selected" : ""}
         /*         onFocus = {setSelected(true)}
-         */ onClick={() => {
-          setSelected(selected => !selected);
-          selected ? selectionData(null) : selectionData(exp);
-        }}
+         */ onClick={() => {handleClick(exp)}}
+        //  onBlur = {console.log("not selected")}
       >
         <td>{index}</td>
         <td>{exp.data().name}</td>
@@ -42,7 +69,7 @@ function Data(props) {
 
   return (
     <div className="App">
-      <table>
+      <table >
         <thead>
           <tr>
             <th>#</th>

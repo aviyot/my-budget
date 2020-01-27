@@ -7,8 +7,7 @@ const ExpenseInput = props => {
 
   const [expense, setExpense] = useState({
     name: "",
-    amount: "",
-    userId: user.uid
+    amount: ""
   });
 
 
@@ -20,8 +19,22 @@ const ExpenseInput = props => {
      setEdit(false);
    }
 
+
   })
 
+  useEffect(() => {
+    if(props.dataAdded){
+     setExpense(()=>{
+        props.setDataAdded(false);
+      return {
+      name: "",
+      amount: ""
+     }})
+    }
+ 
+   },[props.dataAdded])
+
+  
   const handleChange = e => {
     console.log("****handleChange******")
     setExpense({

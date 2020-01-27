@@ -18,12 +18,10 @@ const SignIn = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(email, password);
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        //props.onSignIn(!isValid);
         history.push("/home");
       })
       .catch(err => {
