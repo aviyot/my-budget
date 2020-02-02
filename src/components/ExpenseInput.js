@@ -2,41 +2,38 @@ import React, { useState, useEffect } from "react";
 import firebase from "../config/fbConfig";
 
 const ExpenseInput = props => {
-  const [edit, setEdit] = useState(true);
-  const user = firebase.auth().currentUser;
 
   const [expense, setExpense] = useState({
     name: "",
     amount: ""
   });
 
+  useEffect(() => {
+    props.setUserSelection(expense);
+   
+  });
 
   useEffect(() => {
-   props.setUserSelection(expense);
-
-   if(props.edit && edit) {
-    setExpense(props.selectedExpense.data());
-     setEdit(false);
-   }
-
-
-  })
-
-  useEffect(() => {
-    if(props.dataAdded){
-     setExpense(()=>{
-        props.setDataAdded(false);
-      return {
-      name: "",
-      amount: ""
-     }})
-    }
  
-   },[props.dataAdded])
-
+    if(props.selectedExpense)
+      setExpense(props.selectedExpense.data());
   
+  }, [props.edit]);
+
+  useEffect(() => {
+    if (props.dataAdded) {
+      setExpense(() => {
+        props.setDataAdded(false);
+        return {
+          name: "",
+          amount: ""
+        };
+      });
+    }
+  }, [props.dataAdded]);
+
   const handleChange = e => {
-    console.log("****handleChange******")
+    console.log("****handleChange******");
     setExpense({
       ...expense,
       [e.target.id]: e.target.value

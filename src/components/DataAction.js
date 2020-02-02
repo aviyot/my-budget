@@ -17,8 +17,17 @@ const [edit,setEdited] = useState(false);
         props.setDataAdded(true);
         break;
       case "edit":
-        props.onEdit();
-        setEdited(!edit);
+        setEdited(preEdit => {
+
+          if(!preEdit)
+            props.onEdit(!preEdit);
+          else
+            props.onEdit(preEdit)
+
+          return !preEdit
+          
+        })
+        
         break;
       case "delete":
         deleteDocument("expenses", props.selectedExpense.id);
@@ -40,7 +49,7 @@ const [edit,setEdited] = useState(false);
         id="delete"
 /*         disabled={props.selectedId ? false : true}
  */ 
-disabled = {!props.dataSelected}      
+disabled = {!props.selectedExpense}      
  value="Delete"
         onClick={handleClick}
       />
@@ -48,7 +57,7 @@ disabled = {!props.dataSelected}
         type="button"
         id="edit" /* disabled={props.selectedExpense.id ?false:true} */
         value="Edit"
-        disabled = {!props.dataSelected}
+        disabled = {!props.selectedExpense}
         onClick={handleClick}
       />
       <input type="button" id="update" disabled = {!edit} value="Update" onClick={handleClick} />

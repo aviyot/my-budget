@@ -3,36 +3,34 @@ import deleteDocument from "../functions/firebase/deleteData";
 
 function Data(props) {
 
-  const [selected, setSelected] = useState(false);
   const [selectedData,setSelectedData] = useState(null);
 
   useEffect(() => {
 
-    if (selectedData) {
-      props.selectionData(selectedData,selected);
-    }
+
+      props.selectionData(selectedData);
+    
  
    })
 
   const handleClick = (_selectedData) => {
 
-    setSelectedData(_selectedData);
-
-    setSelected(preSelected => {
-      if(selectedData){
-           if(_selectedData.id === selectedData.id){
-            //selectionData(null);
-           return !preSelected  
-           }
-            else {
-            return preSelected
-            }
-      }
-      else {
-        return true;
  
+    setSelectedData(preSelectedData=>{
+
+      if(preSelectedData) {
+     
+         if(preSelectedData.id === _selectedData.id)
+           return null;
+          else
+          return _selectedData;
+
       }
+
+      return _selectedData;
     });
+  
+
 
   }
   
@@ -43,7 +41,7 @@ function Data(props) {
     return (
       <tr
         key={exp.id}
-        className={selected && (selectedData.id == exp.id) ? "selected" : ""}
+        className={selectedData && (selectedData.id == exp.id) ? "selected" : ""}
         /*         onFocus = {setSelected(true)}
          */ onClick={() => {handleClick(exp)}}
         //  onBlur = {console.log("not selected")}

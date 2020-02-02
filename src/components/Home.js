@@ -11,7 +11,7 @@ export default function Home() {
   const [edit, setEdit] = useState(false);
   const [expense, setExpense] = useState(null);
   const [selectedExpense, setSelectedExpense] = useState(null);
-  const [dataSelected,setDataSelected] = useState(false);
+  // const [dataSelected,setDataSelected] = useState(false);
   const [dataAdded,setDataAdded] = useState(false);
 
   useEffect(() => {
@@ -24,13 +24,11 @@ export default function Home() {
     setExpense(expense);
   };
 
-  const onEdit = () => {
-    setEdit(true);
-
+  const onEdit = (selected) => {
+    setEdit(selected);
   };
 
-  const restDataInput = (setExpenses)=>{
-    
+  const restDataInput = ()=>{
     setExpenses({
       name: "",
       amount: ""
@@ -39,9 +37,8 @@ export default function Home() {
   }
 
 
-  const selectionData = (expense,selected) => {
+  const selectionData = (expense) => {
     setSelectedExpense(expense);
-    setDataSelected(selected);
 
   };
 
@@ -49,19 +46,17 @@ export default function Home() {
     <div>
       <ExpenseInput
         edit={edit}
-        onEdit={onEdit}
         setUserSelection={setUserSelection}
         selectedExpense={selectedExpense}
-        dataSelected = {dataSelected}
         dataAdded = {dataAdded}
         setDataAdded = {setDataAdded}
+        restDataInput ={restDataInput}
       />
       <DataAction
         onEdit={onEdit}
         expense={expense}
         selectedExpense={selectedExpense}
         setUserSelection={setUserSelection}
-        dataSelected = {dataSelected}
         setDataAdded = {setDataAdded}
       />
       <Data selectionData={selectionData} expenses={expenses}/>
