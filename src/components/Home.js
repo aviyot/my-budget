@@ -18,14 +18,26 @@ export default function Home() {
     getData("expenses", setExpenses);
   }, []);
 
+/* 
+  useEffect(()=>{
 
+    if(!edit &&!selectedExpense) {
+    restDataInput();
+    }
+
+  },[edit]) */
  
   const setUserSelection = expense => {
     setExpense(expense);
+    
   };
 
-  const onEdit = (selected) => {
-    setEdit(selected);
+ 
+
+  const onEdit = () => {
+   
+    setEdit(!edit);
+  
   };
 
   const restDataInput = ()=>{
@@ -54,6 +66,7 @@ export default function Home() {
       />
       <DataAction
         onEdit={onEdit}
+        edit={edit}
         expense={expense}
         selectedExpense={selectedExpense}
         setUserSelection={setUserSelection}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import firebase from "../config/fbConfig";
 
 const ExpenseInput = props => {
 
@@ -10,15 +9,32 @@ const ExpenseInput = props => {
 
   useEffect(() => {
     props.setUserSelection(expense);
-   
+    
+ /*    if(props.selectedExpense)
+    setExpense(props.selectedExpense.data()); */
   });
 
-  useEffect(() => {
- 
-    if(props.selectedExpense)
+   useEffect(() => {
+
+    if(props.selectedExpense) {
+      if(props.edit)
       setExpense(props.selectedExpense.data());
+      else
+      setExpense({
+        name: "",
+        amount: ""
+      });
+    }
+
+    else {
+      setExpense({
+        name: "",
+        amount: ""
+      });
+    }
+    
   
-  }, [props.edit]);
+  }, [props.edit],[props.selectedExpense]); 
 
   useEffect(() => {
     if (props.dataAdded) {
@@ -33,7 +49,6 @@ const ExpenseInput = props => {
   }, [props.dataAdded]);
 
   const handleChange = e => {
-    console.log("****handleChange******");
     setExpense({
       ...expense,
       [e.target.id]: e.target.value

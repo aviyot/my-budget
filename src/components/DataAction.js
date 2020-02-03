@@ -6,7 +6,7 @@ import updateData from "../functions/firebase/updateData";
 
 const DataAction = props => {
 
-const [edit,setEdited] = useState(false);
+//const [edit,setEdited] = useState(false);
 
   const handleClick = e => {
     const action = e.target.id;
@@ -17,17 +17,17 @@ const [edit,setEdited] = useState(false);
         props.setDataAdded(true);
         break;
       case "edit":
-        setEdited(preEdit => {
-
+        props.onEdit();
+      /*   setEdited(preEdit => {
+            console.log(preEdit);
           if(!preEdit)
             props.onEdit(!preEdit);
           else
             props.onEdit(preEdit)
 
           return !preEdit
-          
         })
-        
+         */
         break;
       case "delete":
         deleteDocument("expenses", props.selectedExpense.id);
@@ -60,7 +60,7 @@ disabled = {!props.selectedExpense}
         disabled = {!props.selectedExpense}
         onClick={handleClick}
       />
-      <input type="button" id="update" disabled = {!edit} value="Update" onClick={handleClick} />
+      <input type="button" id="update" disabled = {!props.edit || !props.selectedExpense} value="Update" onClick={handleClick} />
     </div>
   );
 };
