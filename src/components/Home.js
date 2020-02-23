@@ -11,11 +11,12 @@ export default function Home() {
   const [edit, setEdit] = useState(false);
   const [expense, setExpense] = useState(null);
   const [selectedExpense, setSelectedExpense] = useState(null);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   // const [dataSelected,setDataSelected] = useState(false);
   const [dataAdded,setDataAdded] = useState(false);
 
   useEffect(() => {
-    getData("expenses", setExpenses);
+     getData("expenses",setExpenses)
   }, []);
 
 /* 
@@ -54,8 +55,14 @@ export default function Home() {
 
   };
 
+  const closeOpenForm = (formStatus)=>{
+    console.log(formStatus);
+        setIsFormOpen(formStatus);
+  }
+
   return (
     <div>
+      {isFormOpen ?
       <ExpenseInput
         edit={edit}
         setUserSelection={setUserSelection}
@@ -63,7 +70,9 @@ export default function Home() {
         dataAdded = {dataAdded}
         setDataAdded = {setDataAdded}
         restDataInput ={restDataInput}
-      />
+      
+      /> : null
+}
       <DataAction
         onEdit={onEdit}
         edit={edit}
@@ -71,9 +80,12 @@ export default function Home() {
         selectedExpense={selectedExpense}
         setUserSelection={setUserSelection}
         setDataAdded = {setDataAdded}
+        closeOpenForm ={closeOpenForm }
       />
+            <CalcResult expenses = {expenses}/>
+
       <Data selectionData={selectionData} expenses={expenses}/>
       <CalcResult expenses = {expenses}/>
     </div>
   );
-}
+ }

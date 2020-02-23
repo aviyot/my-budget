@@ -6,7 +6,7 @@ import updateData from "../functions/firebase/updateData";
 
 const DataAction = props => {
 
-//const [edit,setEdited] = useState(false);
+const [isFormOpen,setIsFormOpen] = useState(false);
 
   const handleClick = e => {
     const action = e.target.id;
@@ -18,6 +18,7 @@ const DataAction = props => {
         break;
       case "edit":
         props.onEdit();
+        
       /*   setEdited(preEdit => {
             console.log(preEdit);
           if(!preEdit)
@@ -43,7 +44,17 @@ const DataAction = props => {
 
   return (
     <div className="form-action">
-      <input type="button" id="add" value="Add" onClick={handleClick} />
+       {isFormOpen ? (<>< input type="button" id = "close_form"  value = "Close Form" 
+                             onClick ={()=>{
+                              props.closeOpenForm(false);
+                               setIsFormOpen(false);
+                            }}/>
+               <input type="button" id="add" value="Add" onClick={handleClick} /></>):
+       <input type ="button" id ="open_form"  value = "Open Form"  
+       onClick ={()=>{
+        props.closeOpenForm(true); 
+        setIsFormOpen(true) }}/> }
+     
       <input
         type="button"
         id="delete"
@@ -61,6 +72,7 @@ disabled = {!props.selectedExpense}
         onClick={handleClick}
       />
       <input type="button" id="update" disabled = {!props.edit || !props.selectedExpense} value="Update" onClick={handleClick} />
+     
     </div>
   );
 };

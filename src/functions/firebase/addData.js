@@ -22,6 +22,7 @@ const addToFirestore = (collection, data) => {
 
   const user = firebase.auth().currentUser;
 
+  if(data.name && data.amount) {
   firebase
     .firestore()
     .collection("users")
@@ -34,5 +35,9 @@ const addToFirestore = (collection, data) => {
     .catch(function(error) {
       console.error("Error writing document: ", error);
     });
+}
+else {
+  console.log("Enter Expense Name and Amount");
+}
 };
 export { addToFirestore };
