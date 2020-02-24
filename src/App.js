@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useContext} from "react";
 import {
   BrowserRouter as Router,
   Redirect
 } from "react-router-dom";
 import firebase from "./config/fbConfig";
+import ExpensesContext from "./contextStore";
 
 import "./App.css";
 import Navigator from "./components/Navigator";
+
+import {expenses} from "./contextStore"
 
 
 function App() {
@@ -37,6 +40,7 @@ function App() {
   });
 
   return (
+    <ExpensesContext.Provider value = {expenses}>
     <div>
       {authState && (
         <Router>
@@ -45,6 +49,7 @@ function App() {
         </Router>
       )}
     </div>
+    </ExpensesContext.Provider>
   );
 }
 

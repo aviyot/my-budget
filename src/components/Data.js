@@ -1,9 +1,12 @@
-import React, {useState, useEffect } from "react";
+import React, {useState, useEffect ,useContext} from "react";
 import deleteDocument from "../functions/firebase/deleteData";
+import ExpensesContext from "../../src/contextStore";
 
 function Data(props) {
 
   const [selectedData,setSelectedData] = useState(null);
+
+  const exps = useContext(ExpensesContext);
 
   useEffect(() => {
 
@@ -67,6 +70,7 @@ function Data(props) {
 
   return (
     <div className="App">
+      <h1>{exps.name}</h1>
       <table >
         <thead>
           <tr>
