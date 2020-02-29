@@ -3,6 +3,7 @@ import firebase from "../../config/fbConfig";
 
 const updateData = (collection,id,expense) =>{
 
+    console.log(expense);
     const user = firebase.auth().currentUser;
 
     firebase
@@ -12,7 +13,7 @@ const updateData = (collection,id,expense) =>{
     .collection(collection)
     .doc(id)
     .update({
-        amount:expense.amount
+        ...expense
     })
     .then(function() {
         console.log("Document successfully updated!");
