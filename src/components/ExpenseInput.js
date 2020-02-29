@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
+import DataActionContext from "../contexts/dataActionContext"
 
 const ExpenseInput = props => {
   const intialFormData = {
@@ -16,6 +17,9 @@ const ExpenseInput = props => {
   };
 
   const [expense, setExpense] = useState(intialFormData);
+  const {dataUI,dispatch} = useContext(DataActionContext);
+
+
 
   useEffect(() => {
     props.setUserSelection(expense);
@@ -63,8 +67,13 @@ const ExpenseInput = props => {
     setExpense(intialFormData);
   };
 
+  const closeForm = ()=>{
+        dispatch({type:"CLOSE_FORM"})
+  }
+
   return (
     <div>
+      <button onClick={closeForm}>X</button>
       <form>
         <div>
           <div>

@@ -1,10 +1,15 @@
 import React from "react";
 import ExpenseInput from "./ExpenseInput";
 import Data from "./Data";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useReducer,useContext } from "react";
 import DataAction from "./DataAction";
 import getData from "../functions/firebase/getData";
 import CalcResult from "./CalcResult";
+
+import dataAction from "../reducers/dataActionReducer";
+import dataActionContext, {dataActionStatus} from  "../contexts/dataActionContext"
+
+
 
 export default function Home() {
   const [expenses, setExpenses] = useState([]);
@@ -15,19 +20,14 @@ export default function Home() {
   // const [dataSelected,setDataSelected] = useState(false);
   const [dataAdded,setDataAdded] = useState(false);
 
+
+  const [dataUI , dispatch] = useReducer(dataAction,dataActionStatus);
+
   useEffect(() => {
      getData("expenses",setExpenses)
   }, []);
 
-/* 
-  useEffect(()=>{
 
-    if(!edit &&!selectedExpense) {
-    restDataInput();
-    }
-
-  },[edit]) */
- 
   const setUserSelection = expense => {
     setExpense(expense);
     
@@ -61,8 +61,10 @@ export default function Home() {
   }
 
   return (
+    <dataActionContext.Provider  value = {{dataUI,dispatch}}>
     <div>
-      {isFormOpen ?
+    
+      {dataUI.isFormOpen ?
       <ExpenseInput
         edit={edit}
         setUserSelection={setUserSelection}
@@ -82,10 +84,9 @@ export default function Home() {
         setDataAdded = {setDataAdded}
         closeOpenForm ={closeOpenForm }
       />
-            <CalcResult expenses = {expenses}/>
-
-      <Data selectionData={selectionData} expenses={expenses}/>
       <CalcResult expenses = {expenses}/>
+      <Data selectionData={selectionData} expenses={expenses}/>
     </div>
+    </dataActionContext.Provider>
   );
  }

@@ -6,5 +6,5 @@ export const expenses = {
    amount:100
   };
 
-  const ExpensesContext =  createContext(null);
+  const ExpensesContext =  createContext(expenses);
   export default ExpensesContext;

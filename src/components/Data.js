@@ -1,12 +1,17 @@
 import React, {useState, useEffect ,useContext} from "react";
 import deleteDocument from "../functions/firebase/deleteData";
-import ExpensesContext from "../../src/contextStore";
+import ExpensesContext from "../contexts/contextStore";
+
+import DataActionContext from "../contexts/dataActionContext"
+
 
 function Data(props) {
 
   const [selectedData,setSelectedData] = useState(null);
 
   const exps = useContext(ExpensesContext);
+
+  const {dataUI,dispatch} = useContext(DataActionContext);
 
   useEffect(() => {
 
@@ -18,8 +23,10 @@ function Data(props) {
 
   const handleClick = (_selectedData) => {
 
- 
-    setSelectedData(preSelectedData=>{
+    dispatch({type:"EXPENSE_SELECTED",selectedExpense:_selectedData});
+
+
+ /*    setSelectedData(preSelectedData=>{
 
       if(preSelectedData) {
      
@@ -31,7 +38,7 @@ function Data(props) {
       }
 
       return _selectedData;
-    });
+    }); */
   
 
 
@@ -44,7 +51,7 @@ function Data(props) {
     return (
       <tr
         key={exp.id}
-        className={selectedData && (selectedData.id == exp.id) ? "selected" : ""}
+        className={dataUI.expenseSelected && (dataUI.selectedExpense.id == exp.id) ? "selected" : ""}
         /*         onFocus = {setSelected(true)}
          */ onClick={() => {handleClick(exp)}}
         //  onBlur = {console.log("not selected")}
