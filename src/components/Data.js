@@ -1,4 +1,4 @@
-import React, {useState, useEffect ,useContext} from "react";
+import React, {useContext} from "react";
 import deleteDocument from "../functions/firebase/deleteData";
 import ExpensesContext from "../contexts/contextStore";
 
@@ -7,19 +7,18 @@ import DataActionContext from "../contexts/dataActionContext"
 
 function Data(props) {
 
-  const [selectedData,setSelectedData] = useState(null);
 
   const exps = useContext(ExpensesContext);
 
   const {dataUI,dispatch} = useContext(DataActionContext);
 
-  useEffect(() => {
+ /*  useEffect(() => {
 
 
       props.selectionData(selectedData);
     
  
-   })
+   }) */
 
   const handleClick = (_selectedData) => {
 
@@ -51,7 +50,7 @@ function Data(props) {
     return (
       <tr
         key={exp.id}
-        className={dataUI.expenseSelected && (dataUI.selectedExpense.id == exp.id) ? "selected" : ""}
+        className={dataUI.expenseSelected && (dataUI.selectedExpense.id === exp.id) ? "selected" : ""}
         /*         onFocus = {setSelected(true)}
          */ onClick={() => {handleClick(exp)}}
         //  onBlur = {console.log("not selected")}

@@ -1,70 +1,15 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, {useContext } from "react";
 import DataActionContext from "../contexts/dataActionContext"
 
 const ExpenseInput = props => {
-  const intialFormData = {
-    name: "",
-    amount: "",
-    category: "",
-    category_opthion:["","car","study","clothing","food"],
-    methodPay: "",
-    method_pay_opthion :["","אשראי","מזומן","הוראת קבע","העברה בנקאית"],
-    freqPay: 1,
-    benef: "",
-    commitDate: "",
-    fristPayDate: "", 
-    numberOfPay: ""
-  };
+ 
+  const category_opthion= ["","car","study","clothing","food"];
+  const method_pay_opthion = ["","אשראי","מזומן","הוראת קבע","העברה בנקאית"];
 
-  const [expense, setExpense] = useState(intialFormData);
   const {dataUI,dispatch} = useContext(DataActionContext);
 
-
-
-  useEffect(() => {
-    props.setUserSelection(expense);
-
-    /*    if(props.selectedExpense)
-       setExpense(props.selectedExpense.data()); */
-  }, [expense]);
-
-  useEffect(
-    () => {
-      if (props.selectedExpense) {
-        if (props.edit) setExpense(props.selectedExpense.data());
-        else restForm();
-      } else {
-        restForm();
-      }
-    },
-    [props.edit],
-    [props.selectedExpense]
-  );
-
-  useEffect(() => {
-    if (props.dataAdded) {
-      restForm();
-      props.setDataAdded(false);
-
-      /*  setExpense(() => {
-        props.setDataAdded(false);
-        return {
-          name: "",
-          amount: ""
-        };
-      }); */
-    }
-  }, [props.dataAdded]);
-
   const handleChange = e => {
-    setExpense({
-      ...expense,
-      [e.target.id]: e.target.value
-    });
-  };
-
-  const restForm = () => {
-    setExpense(intialFormData);
+    dispatch({type:"CHANGE_FORM_HANDLER",payload:e.target})
   };
 
   const closeForm = ()=>{
@@ -81,7 +26,7 @@ const ExpenseInput = props => {
             <input
               type="text"
               id="name"
-              value={expense.name}
+              value={dataUI.currentExpense.name}
               onChange={handleChange}
             />
           </div>
@@ -90,23 +35,23 @@ const ExpenseInput = props => {
             <input
               type="number"
               id="amount"
-              value={expense.amount}
+              value={dataUI.currentExpense.amount}
               onChange={handleChange}
             />
           </div>
         </div>
         <div>
         <label>Category</label> 
-        <select value={expense.category} id="category" onChange={handleChange}>
-            {expense.category_opthion.map((val,index)=>(<option value = {val} key={index}>{val}</option>))}
+        <select value={dataUI.currentExpense.category} id="category" onChange={handleChange}>
+            {category_opthion.map((val,index)=>(<option value = {val} key={index}>{val}</option>))}
         </select>
           </div>
 
         <div>
           <label>Pay Method</label>
-          <select id="methodPay"  value={expense.methodPay}
+          <select id="methodPay"  value={dataUI.currentExpense.methodPay}
             onChange={handleChange}>
-            {expense.method_pay_opthion.map((val,index)=>(<option value = {val} key={index}>{val}</option>))}
+            {method_pay_opthion.map((val,index)=>(<option value = {val} key={index}>{val}</option>))}
           </select>
         </div>
 
@@ -115,7 +60,7 @@ const ExpenseInput = props => {
           <input
             type="text"
             id="freqPay"
-            value={expense.freqPay}
+            value={dataUI.currentExpense.freqPay}
             onChange={handleChange}
           />
         </div>
@@ -124,7 +69,7 @@ const ExpenseInput = props => {
           <input
             type="text"
             id="benef"
-            value={expense.benef}
+            value={dataUI.currentExpense.benef}
             onChange={handleChange}
           />
         </div>
@@ -133,7 +78,7 @@ const ExpenseInput = props => {
           <input
             type="date"
             id="commitDate"
-            value={expense.commitDate}
+            value={dataUI.currentExpense.commitDate}
             onChange={handleChange}
           />
         </div>
@@ -142,7 +87,7 @@ const ExpenseInput = props => {
           <input
             type="date"
             id="fristPayDate"
-            value={expense.fristPayDate}
+            value={dataUI.currentExpense.fristPayDate}
             onChange={handleChange}
           />
         </div>
@@ -151,7 +96,7 @@ const ExpenseInput = props => {
           <input
             type="number"
             id="numberOfPay"
-            value={expense.numberOfPay}
+            value={dataUI.currentExpense.numberOfPay}
             onChange={handleChange}
           />
         </div>
