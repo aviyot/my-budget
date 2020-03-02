@@ -8,7 +8,7 @@ const dataAction = (state, action) => {
         isFormOpen: false,
         selectedExpense: null,
         expenseSelected: false,
-        currentExpense: { ...intialFormData }
+        currentExpense: intialFormData
       };
     case "OPEN_FORM":
       return { ...state, isFormOpen: true };

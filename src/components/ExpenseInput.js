@@ -1,20 +1,26 @@
-import React, {useContext } from "react";
-import DataActionContext from "../contexts/dataActionContext"
+import React, { useContext, useState, useEffect } from "react";
+import DataActionContext from "../contexts/dataActionContext";
+import getData from "../functions/firebase/getData";
 
 const ExpenseInput = props => {
- 
-  const category_opthion= ["","car","study","clothing","food"];
-  const method_pay_opthion = ["","אשראי","מזומן","הוראת קבע","העברה בנקאית"];
 
-  const {dataUI,dispatch} = useContext(DataActionContext);
+  const { dataUI, dispatch } = useContext(DataActionContext);
+
+  const [option, setOption] = useState([]);
+
+  useEffect(() => {
+    getData("form_option", setOption);
+  }, []);
+
 
   const handleChange = e => {
-    dispatch({type:"CHANGE_FORM_HANDLER",payload:e.target})
+    console.log("change_form");
+    dispatch({ type: "CHANGE_FORM_HANDLER", payload: e.target });
   };
 
-  const closeForm = ()=>{
-        dispatch({type:"CLOSE_FORM"})
-  }
+  const closeForm = () => {
+    dispatch({ type: "CLOSE_FORM" });
+  };
 
   return (
     <div>
@@ -41,17 +47,42 @@ const ExpenseInput = props => {
           </div>
         </div>
         <div>
-        <label>Category</label> 
-        <select value={dataUI.currentExpense.category} id="category" onChange={handleChange}>
-            {category_opthion.map((val,index)=>(<option value = {val} key={index}>{val}</option>))}
-        </select>
-          </div>
+          <label>Category</label>
+
+          <select
+            value={dataUI.currentExpense.category}
+            id="category"
+            onChange={handleChange}
+          >
+            {option.length
+              ? option[0].data().category.map((val, index) => (
+                  <option value={val} key={index}>
+                    {val}
+                  </option>
+                ))
+              : null}
+          </select>
+        </div>
 
         <div>
           <label>Pay Method</label>
-          <select id="methodPay"  value={dataUI.currentExpense.methodPay}
-            onChange={handleChange}>
-            {method_pay_opthion.map((val,index)=>(<option value = {val} key={index}>{val}</option>))}
+          <select
+            id="methodPay"
+            value={dataUI.currentExpense.methodPay}
+            onChange={handleChange}
+          >
+            {option.length
+              ? option[0].data().pay_methods.map((val, index) => (
+                  <option value={val} key={index}>
+                    {val}
+                  </option>
+                ))
+              : null}
+            {/*  {method_pay_opthion.map((val, index) => (
+              <option value={val} key={index}>
+                {val}
+              </option>
+            ))} */}
           </select>
         </div>
 
@@ -59,8 +90,8 @@ const ExpenseInput = props => {
           <label>Pay Freq</label>
           <input
             type="text"
-            id="freqPay"
-            value={dataUI.currentExpense.freqPay}
+            id="freq_pay"
+            value={dataUI.currentExpense.freq_pay}
             onChange={handleChange}
           />
         </div>

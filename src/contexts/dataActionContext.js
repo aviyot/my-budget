@@ -5,7 +5,7 @@ export const intialFormData = {
     amount: "",
     category: "",
     methodPay: "",
-    freqPay: 1,
+    freq_pay: 1,
     benef: "",
     commitDate: "",
     fristPayDate: "", 
@@ -19,8 +19,8 @@ export const dataActionStatus = {
     onDelete:false,
     onEdit:false,
     onUpdate:false,
-    selectedExpense:null,
-    currentExpense : intialFormData
+    selectedExpense:intialFormData,
+    currentExpense :intialFormData
 }
 const DataActionContext = createContext(dataActionStatus);
 export default DataActionContext;

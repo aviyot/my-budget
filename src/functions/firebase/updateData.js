@@ -3,7 +3,6 @@ import firebase from "../../config/fbConfig";
 
 const updateData = (collection,id,expense) =>{
 
-    console.log(expense);
     const user = firebase.auth().currentUser;
 
     firebase
