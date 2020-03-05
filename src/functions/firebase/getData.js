@@ -1,6 +1,6 @@
 import firebase from "../../config/fbConfig";
 
-const getData = (collection, setExpenses) => {
+const getData = (collection, setData) => {
 
   const user = firebase.auth().currentUser;
 
@@ -10,12 +10,12 @@ const getData = (collection, setExpenses) => {
     .doc(user.uid)
     .collection(collection)
     .onSnapshot(function(querySnapshot) {
-      const expensesFir = [];
+      const data = [];
 
       querySnapshot.forEach(function(doc) {
-        expensesFir.push(doc);
+        data.push(doc);
       });
-      setExpenses([...expensesFir]);
+      setData([...data]);
     });
 
 };

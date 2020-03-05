@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext,useEffect} from "react";
 import deleteDocument from "../functions/firebase/deleteData";
 import ExpensesContext from "../contexts/contextStore";
 
@@ -12,13 +12,11 @@ function Data(props) {
 
   const {dataUI,dispatch} = useContext(DataActionContext);
 
- /*  useEffect(() => {
+ useEffect(() => {
 
-
-      props.selectionData(selectedData);
     
  
-   }) */
+   })
 
   const handleClick = (_selectedData) => {
 
@@ -59,7 +57,7 @@ function Data(props) {
         <td>{exp.data().name}</td>
         <td>{exp.data().amount}</td>
 
-        <td>
+      {/*   <td>
           {props.selectedId === exp.id ? (
             <h4
               onClick={() => {
@@ -69,7 +67,7 @@ function Data(props) {
               x
             </h4>
           ) : null}
-        </td>
+        </td> */}
       </tr>
     );
   });
