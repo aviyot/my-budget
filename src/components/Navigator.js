@@ -20,9 +20,10 @@ export default function Navigator(props) {
         </div>
       ) : (
         <Link to="/signin">
+         
           <input
             type="button"
-            value="signOut"
+            value="SIGN OUT"
             onClick={() => {
               firebase.auth().signOut();
             }}

@@ -2,7 +2,6 @@ import React, { useState,useReducer } from "react";
 import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import firebase from "./config/fbConfig";
 import ExpensesContext from "./contexts/contextStore";
-
 import "./App.css";
 import Navigator from "./components/Navigator";
 import expensesReducer from "./reducers/expensesReducer";
@@ -20,10 +19,9 @@ function App() {
     } else {
       setUserSignIn(false);
       setAuthState(true);
-      console.log("User is signed out");
     }
   });
-
+  
   return (
     <ExpensesContext.Provider value={{ expenses, dispatch }}>
       <div>
