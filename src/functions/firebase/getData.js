@@ -3,8 +3,9 @@ import firebase from "../../config/fbConfig";
 const getData = (collection, setData) => {
 
   const user = firebase.auth().currentUser;
+  if(user){
 
-  firebase
+    firebase
     .firestore()
     .collection("users")
     .doc(user.uid)
@@ -17,6 +18,8 @@ const getData = (collection, setData) => {
       });
       setData([...data]);
     });
+
+  }
 
 };
 
