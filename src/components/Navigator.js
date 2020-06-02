@@ -3,6 +3,7 @@ import { Route, Link, Switch} from "react-router-dom";
 
 import SignUp from "./auth/SignUp";
 import SignIn from "./auth/SignIn";
+import Welcome from "./welcome";
 import Data from "./Data";
 import firebase from "../config/fbConfig";
 import Home from "./Home";
@@ -43,6 +44,9 @@ export default function Navigator(props) {
 
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/welcome">
+          <Welcome/>
         </Route>
         <Route path="/">
           <Home />

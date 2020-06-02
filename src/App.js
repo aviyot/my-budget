@@ -28,7 +28,7 @@ function App() {
         {authState && (
           <Router>
             <Navigator logIn={userSignIn} />
-            {userSignIn ? <Redirect to="/home" /> : <Redirect to="/signin"/>}
+            {userSignIn ? <Redirect to="/home" /> : <Redirect to="/welcome"/>}
           </Router>
         )}
       </div>
