@@ -23,12 +23,12 @@ function App() {
   });
   
   return (
-    <ExpensesContext.Provider value={{ expenses, dispatch }}>
+    <ExpensesContext.Provider value={{ expenses, dispatch}}>
       <div>
         {authState && (
           <Router>
             <Navigator logIn={userSignIn} />
-            {userSignIn ? <Redirect to="/home" /> : null}
+            {userSignIn ? <Redirect to="/home" /> : <Redirect to="/signin"/>}
           </Router>
         )}
       </div>

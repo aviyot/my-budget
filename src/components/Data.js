@@ -36,7 +36,6 @@ function Data(props) {
     );
   });
 
-  console.log("3")
 
   return (
     <div className="App">
