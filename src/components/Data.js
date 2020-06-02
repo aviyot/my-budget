@@ -1,86 +1,52 @@
-import React, {useContext,useEffect} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import deleteDocument from "../functions/firebase/deleteData";
 import ExpensesContext from "../contexts/contextStore";
-
-import DataActionContext from "../contexts/dataActionContext"
-
+import DataActionContext from "../contexts/dataActionContext";
+import sortObj from "../functions/utilityFunctions/sortObj"
 
 function Data(props) {
 
-
   const exps = useContext(ExpensesContext);
-
-  const {dataUI,dispatch} = useContext(DataActionContext);
-
- useEffect(() => {
-
-    
- 
-   })
+  const [sortKey, setSortKey] = useState("amount");
+  const [sortOrder, setSortOrder] = useState(false);
+  const [typeValue, setTypeValue] = useState("num");
+  const { dataUI, dispatch } = useContext(DataActionContext);
 
   const handleClick = (_selectedData) => {
+    dispatch({ type: "EXPENSE_SELECTED", selectedExpense: _selectedData });
+  };
 
-    dispatch({type:"EXPENSE_SELECTED",selectedExpense:_selectedData});
-
-
- /*    setSelectedData(preSelectedData=>{
-
-      if(preSelectedData) {
-     
-         if(preSelectedData.id === _selectedData.id)
-           return null;
-          else
-          return _selectedData;
-
-      }
-
-      return _selectedData;
-    }); */
-  
-
-
-  }
-  
-
- 
-
-  const Exp = props.expenses.map((exp, index) => {
+  const Exp = sortObj(props.expenses,sortKey,sortOrder,typeValue).map((exp, index) => {
     return (
       <tr
         key={exp.id}
-        className={dataUI.expenseSelected && (dataUI.selectedExpense.id === exp.id) ? "selected" : ""}
-        /*         onFocus = {setSelected(true)}
-         */ onClick={() => {handleClick(exp)}}
-        //  onBlur = {console.log("not selected")}
+        className={
+          dataUI.expenseSelected && dataUI.selectedExpense.id === exp.id
+            ? "selected"
+            : ""
+        }
+        onClick={() => {
+          handleClick(exp);
+        }}
       >
-        <td>{index}</td>
+        <td style={{padding:"2px 4px"}}>{index}</td>
         <td>{exp.data().name}</td>
         <td>{exp.data().amount}</td>
-
-      {/*   <td>
-          {props.selectedId === exp.id ? (
-            <h4
-              onClick={() => {
-                deleteDocument("expenses", exp.id);
-              }}
-            >
-              x
-            </h4>
-          ) : null}
-        </td> */}
       </tr>
     );
   });
 
+  console.log("3")
+
   return (
     <div className="App">
       <h1>{exps.name}</h1>
-      <table >
+      <table>
         <thead>
           <tr>
             <th>#</th>
-            <th>Exp.Name</th>
-            <th>Amount</th>
+            <th onClick={()=>{setTypeValue("str");setSortKey("name");setSortOrder(!sortOrder)}}>Name</th>
+            <th  onClick={()=>{setTypeValue("num");setSortKey("amount");setSortOrder(!sortOrder)}}>Amount &#8362;</th>
           </tr>
         </thead>
         <tbody>{Exp}</tbody>
