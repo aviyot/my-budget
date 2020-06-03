@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import deleteDocument from "../functions/firebase/deleteData";
+import React, { useContext,useState } from "react";
 import ExpensesContext from "../contexts/contextStore";
 import DataActionContext from "../contexts/dataActionContext";
 import sortObj from "../functions/utilityFunctions/sortObj"

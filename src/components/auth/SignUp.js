@@ -8,6 +8,7 @@ const SignUp = props => {
   const [password, setPassword] = useState("");
   const [password_rep, setPassword_rep] = useState("");
   const [display_name, setDisplayName] = useState("");
+  const [errorPassword,setErrorPassword] = useState("");
 
   const textAlign = { textAlign: "center" };
 
@@ -21,9 +22,16 @@ const SignUp = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if(password === password_rep) {
+      setErrorPassword("");
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
       console.log(err);
     });
+  }
+  else {
+    setErrorPassword("PASSWORD NO MATCH");
+    console.log("password no match")
+  }
   };
   return (
     <div className="container">
@@ -81,14 +89,16 @@ const SignUp = props => {
             onChange={handleChange}
           />
         </div>
-
+        <p>{errorPassword}</p>
         <input
           className="button"
           type="submit"
           value="SIGNUP"
           style={{ display: "inline-block", width: "100px" }}
         />
+            
       </form>
+ 
     </div>
   );
 };

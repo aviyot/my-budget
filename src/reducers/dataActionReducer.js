@@ -42,7 +42,8 @@ const dataAction = (state, action) => {
         deleteDocument("expenses",state.selectedExpense.id);
       }
       else
-      console.log("No Selected intem to delete")
+      console.log("No Selected intem to delete");
+      break;
     case "NEW_EXPENSE_ADDED":
       return {};
     case "REST_SELECTED":

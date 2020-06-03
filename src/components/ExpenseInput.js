@@ -14,7 +14,6 @@ const ExpenseInput = props => {
 
 
   const handleChange = e => {
-    console.log("change_form");
     dispatch({ type: "CHANGE_FORM_HANDLER", payload: e.target });
   };
 

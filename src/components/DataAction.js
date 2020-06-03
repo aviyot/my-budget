@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { addToFirestore } from "../functions/firebase/addData";
-import deleteDocument from "../functions/firebase/deleteData";
 import updateData from "../functions/firebase/updateData";
-import ExpensesContext from "../contexts/contextStore";
 import DataActionContext from "../contexts/dataActionContext";
 
 const DataAction = props => {
@@ -35,7 +33,7 @@ const DataAction = props => {
       case "add_new":
         dispatch({ type: "OPEN_FORM" });
         dispatch({ type: "REST_SELECTED" });
-
+      break;
       default:
     }
   };

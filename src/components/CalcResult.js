@@ -10,7 +10,6 @@ const CalcResult = props => {
   };
 
   let sum = 0;
-  let i=0;
   if (props.expenses.length > 0) {
     props.expenses.forEach(element => {
       sum += +element.data().amount;
