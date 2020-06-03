@@ -20,7 +20,8 @@ const DataAction = props => {
         dispatch({ type: "ON_EDIT" });
         break;
       case "delete":
-        deleteDocument("expenses", dataUI.selectedExpense.id);
+        dispatch({type:"DELETE_SELECTED"})
+        //deleteDocument("expenses", dataUI.selectedExpense.id);
         break;
       case "update":
         updateData(
@@ -55,7 +56,7 @@ const DataAction = props => {
       <input
         type="button"
         id="delete"
-        disabled={!dataUI.selectedExpense}
+        disabled={!dataUI.expensesSelected}
         value="Delete"
         onClick={handleClick}
       />
@@ -63,13 +64,13 @@ const DataAction = props => {
         type="button"
         id="edit" /* disabled={props.selectedExpense.id ?false:true} */
         value="Edit"
-        disabled={!dataUI.selectedExpense}
+        disabled={!dataUI.onEdit }
         onClick={handleClick}
       />
       <input
         type="button"
         id="update"
-        disabled={!dataUI.onEdit || !dataUI.selectedExpense}
+        disabled={dataUI.onEdit || !dataUI.onUpdate}
         value="Update"
         onClick={handleClick}
       />

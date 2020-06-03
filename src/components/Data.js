@@ -21,7 +21,7 @@ function Data(props) {
       <tr
         key={exp.id}
         className={
-          dataUI.expenseSelected && dataUI.selectedExpense.id === exp.id
+          dataUI.expensesSelected && dataUI.selectedExpense.id === exp.id
             ? "selected"
             : ""
         }
