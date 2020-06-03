@@ -24,8 +24,7 @@ export default function Home() {
   return (
     <dataActionContext.Provider value={{ dataUI, dispatch }}>
       <div>
-        {dataUI.isFormOpen ? <ExpenseInput /> : null}
-        <DataAction />
+        {dataUI.isFormOpen ? <ExpenseInput /> : <DataAction />}
         <CalcResult expenses={expenses} />
         <Data expenses={expenses} />
       </div>

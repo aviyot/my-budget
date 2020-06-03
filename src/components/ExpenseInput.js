@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import DataActionContext from "../contexts/dataActionContext";
 import getData from "../functions/firebase/getData";
+import DataAction from "./DataAction";
+
 
 const ExpenseInput = props => {
 
@@ -22,7 +24,7 @@ const ExpenseInput = props => {
   };
 
   return (
-    <div style = {{position:"absolute",top:"10%",left:'10%',backgroundColor:"white",
+    <div style = {{position:"absolute",top:"30%",left:'10%',backgroundColor:"white",
     padding:"10px", boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"}}>
       <button onClick={closeForm}>X</button>
       <form>
@@ -133,6 +135,7 @@ const ExpenseInput = props => {
         </div>
         <div></div>
       </form>
+      <DataAction/>
     </div>
   );
 };
