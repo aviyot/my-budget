@@ -34,16 +34,16 @@ const SignUp = props => {
   }
   };
   return (
-    <div className="container">
-      <h1 className="container" style={textAlign}>
+    <div  class="container">
+      <h1 >
         Sign Up
       </h1>
       <form
-        className="form row row-cols-1"
+      
         onSubmit={handleSubmit}
-        style={textAlign}
+   
       >
-        <div className="col">
+        <div >
           <label>User Name</label>
           <input
             type="text"
@@ -53,10 +53,10 @@ const SignUp = props => {
             onChange={handleChange}
           />
         </div>
-        <div className="col">
+        <div>
           <label>Email</label>
           <input
-            className=""
+          
             type="email"
             name="email"
             id="email"
@@ -65,10 +65,10 @@ const SignUp = props => {
             onChange={handleChange}
           />
         </div>
-        <div className="col">
+        <div>
           <label>Password</label>
           <input
-            className=""
+           
             type="password"
             name="password"
             id="password"
@@ -77,10 +77,10 @@ const SignUp = props => {
             required
           />
         </div>
-        <div className="col">
+        <div>
           <label>Re Enter Password </label>
           <input
-            className=""
+      
             type="password"
             name="password_rep"
             id="password_rep"
@@ -91,10 +91,9 @@ const SignUp = props => {
         </div>
         <p>{errorPassword}</p>
         <input
-          className="button"
+          className="btn"
           type="submit"
           value="SIGNUP"
-          style={{ display: "inline-block", width: "100px" }}
         />
             
       </form>

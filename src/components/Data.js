@@ -21,7 +21,7 @@ function Data(props) {
         key={exp.id}
         className={
           dataUI.expensesSelected && dataUI.selectedExpense.id === exp.id
-            ? "selected"
+            ? "bg-danger text-white font-weight-bold"
             : ""
         }
         onClick={() => {
@@ -37,9 +37,8 @@ function Data(props) {
 
 
   return (
-    <div className="App">
-      <h1>{exps.name}</h1>
-      <table>
+    <div className="d-flex justify-content-center bg-light">
+      <table className="w-100">
         <thead>
           <tr>
             <th>#</th>

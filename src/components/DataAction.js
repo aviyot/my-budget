@@ -5,6 +5,7 @@ import DataActionContext from "../contexts/dataActionContext";
 
 const DataAction = props => {
   const { dispatch, dataUI } = useContext(DataActionContext);
+
   const handleClick = e => {
     const action = e.target.id;
 
@@ -15,7 +16,7 @@ const DataAction = props => {
 
         break;
       case "edit":
-        dispatch({ type: "ON_EDIT" });
+        dispatch({ type: "ON_EDIT"});
         break;
       case "delete":
         dispatch({type:"DELETE_SELECTED"})
@@ -39,19 +40,21 @@ const DataAction = props => {
   };
 
   return (
-    <div className="form-action">
+    <div className="form-action d-flex justify-content-start my-2">
       {dataUI.isFormOpen ? (
-        <input type="button" id="add" value="Add" onClick={handleClick} />
+        <input type="button" class="btn btn-outline-secondary" id="add" value="Add" onClick={handleClick} />
       ) : (
         <input
+        class="btn btn-outline-secondary"
           type="button"
           id="add_new"
-          value="Add New Expense"
+          value="Add"
           onClick={handleClick}
         />
       )}
 
       <input
+        class="btn btn-outline-secondary"
         type="button"
         id="delete"
         disabled={!dataUI.expensesSelected}
@@ -59,6 +62,7 @@ const DataAction = props => {
         onClick={handleClick}
       />
       <input
+        class="btn btn-outline-secondary"
         type="button"
         id="edit" /* disabled={props.selectedExpense.id ?false:true} */
         value="Edit"
@@ -66,6 +70,7 @@ const DataAction = props => {
         onClick={handleClick}
       />
       <input
+      class="btn btn-outline-secondary"
         type="button"
         id="update"
         disabled={dataUI.onEdit || !dataUI.onUpdate}

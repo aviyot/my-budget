@@ -10,27 +10,43 @@ import Home from "./Home";
 export default function Navigator(props) {
   return (
     <div>
+    <nav class="navbar navbar-dark">
+
       {!props.logIn ? (
         <div>
-          <Link to="/signin" style={{ margin: "2rem" }}>
-            Sign In
+          <Link to="/signin">
+            <input type="button"
+              className="btn"
+              value="SIGN IN">
+          
+            </input>
           </Link>
-          <Link to="/signup" style={{ margin: "2rem" }}>
-            Sign Up
+          <Link to="/signup" >
+          <input type="button"
+              className="btn"
+              value="SIGN UP">
+                    
+            </input>
+       
           </Link>
         </div>
       ) : (
+        <div>
         <Link to="/signin">
-         
-          <input
+         <input
+         className="btn"
             type="button"
             value="SIGN OUT"
             onClick={() => {
               firebase.auth().signOut();
             }}
           />
-        </Link>
+          </Link>
+          </div>
+
       )}
+      </nav>
+        
       <Switch>
         <Route path="/signin">
           <SignIn />

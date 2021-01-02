@@ -29,12 +29,12 @@ const SignIn = props => {
   };
 
   return (
-    <div className="container">
-      <h1 className="container" style={textAlign}>
+    <div  class="container">
+      <h1 >
         Sign In
       </h1>
       <form
-        className="container row row-cols-1"
+      
         onSubmit={handleSubmit}
         style={textAlign}
       >
@@ -62,10 +62,10 @@ const SignIn = props => {
           />
         </div>
         <input
-          className="button"
+          className="btn"
           type="submit"
           value="SIGNIN"
-          style={{ display: "inline-block", width: "100px" }}
+         
         />
       </form>
     </div>
