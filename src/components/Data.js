@@ -1,11 +1,11 @@
 import React, { useContext,useState } from "react";
-import ExpensesContext from "../contexts/contextStore";
+//import ExpensesContext from "../contexts/contextStore";
 import DataActionContext from "../contexts/dataActionContext";
 import sortObj from "../functions/utilityFunctions/sortObj"
 
 function Data(props) {
 
-  const exps = useContext(ExpensesContext);
+  //const exps = useContext(ExpensesContext);
   const [sortKey, setSortKey] = useState("amount");
   const [sortOrder, setSortOrder] = useState(false);
   const [typeValue, setTypeValue] = useState("num");

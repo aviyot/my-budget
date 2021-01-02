@@ -7,14 +7,13 @@ const SignUp = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_rep, setPassword_rep] = useState("");
-  const [display_name, setDisplayName] = useState("");
+  //const [display_name, setDisplayName] = useState("");
   const [errorPassword,setErrorPassword] = useState("");
 
-  const textAlign = { textAlign: "center" };
 
 
   const handleChange = e => {
-    if (e.target.id === "display_name") setDisplayName(e.target.value);
+    //if (e.target.id === "display_name") setDisplayName(e.target.value);
     if (e.target.id === "email") setEmail(e.target.value);
     if (e.target.id === "password") setPassword(e.target.value);
     if (e.target.id === "password_rep") setPassword_rep(e.target.value);
