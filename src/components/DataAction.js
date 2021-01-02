@@ -45,7 +45,7 @@ const DataAction = props => {
         <input type="button" class="btn btn-outline-secondary" id="add" value="Add" onClick={handleClick} />
       ) : (
         <input
-        class="btn btn-outline-secondary"
+        className="btn btn-outline-secondary"
           type="button"
           id="add_new"
           value="Add"
@@ -54,7 +54,7 @@ const DataAction = props => {
       )}
 
       <input
-        class="btn btn-outline-secondary"
+        className="btn btn-outline-secondary"
         type="button"
         id="delete"
         disabled={!dataUI.expensesSelected}
@@ -62,7 +62,7 @@ const DataAction = props => {
         onClick={handleClick}
       />
       <input
-        class="btn btn-outline-secondary"
+        className="btn btn-outline-secondary"
         type="button"
         id="edit" /* disabled={props.selectedExpense.id ?false:true} */
         value="Edit"
@@ -70,7 +70,7 @@ const DataAction = props => {
         onClick={handleClick}
       />
       <input
-      class="btn btn-outline-secondary"
+      className="btn btn-outline-secondary"
         type="button"
         id="update"
         disabled={dataUI.onEdit || !dataUI.onUpdate}

@@ -10,7 +10,7 @@ import Home from "./Home";
 export default function Navigator(props) {
   return (
     <div>
-    <nav class="navbar navbar-dark">
+    <nav className="navbar navbar-dark">
 
       {!props.logIn ? (
         <div>

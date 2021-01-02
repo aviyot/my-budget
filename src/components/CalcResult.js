@@ -8,7 +8,7 @@ const CalcResult = props => {
       sum += +element.data().amount;
     });
   }
-  return <div class="card"> <h1>{sum.toFixed()} &#8362; </h1> </div>;
+  return <div className="card"> <h1>{sum.toFixed()} &#8362; </h1> </div>;
 };
 
 export default CalcResult;
