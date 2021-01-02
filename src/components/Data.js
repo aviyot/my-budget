@@ -28,7 +28,7 @@ function Data(props) {
           handleClick(exp);
         }}
       >
-        <td style={{padding:"2px 4px"}}>{index}</td>
+        <td style={{padding:"2px 4px"}}>No.{index}</td>
         <td>{exp.data().name}</td>
         <td>{exp.data().amount}</td>
       </tr>
