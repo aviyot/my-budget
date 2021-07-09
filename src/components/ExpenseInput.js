@@ -21,6 +21,8 @@ const ExpenseInput = (props) => {
   };
 
   return (
+    <div className="position-fixed shadow p-3 mb-5 bg-white rounded" id="expense-edit">
+      <div >
       <button type="button" className="close" aria-label="Close" onClick={closeForm}>
   <span aria-hidden="true">&times;</span>
 </button>
