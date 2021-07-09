@@ -21,9 +21,7 @@ const ExpenseInput = (props) => {
   };
 
   return (
-    <div className="ml-4 mt-4 card center-fixed" id="expense-edit">
-      <div>
-      <button type="button" class="close" aria-label="Close" onClick={closeForm}>
+      <button type="button" className="close" aria-label="Close" onClick={closeForm}>
   <span aria-hidden="true">&times;</span>
 </button>
         <form>

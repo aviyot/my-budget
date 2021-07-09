@@ -42,7 +42,7 @@ const DataAction = props => {
   return (
     <div className="form-action d-flex justify-content-start my-2">
       {dataUI.isFormOpen ? (
-        <input type="button" class="btn btn-outline-secondary" id="add" value="Add" onClick={handleClick} />
+        <input type="button" className="btn btn-outline-secondary" id="add" value="Add" onClick={handleClick} />
       ) : (
         <input
         className="btn btn-outline-secondary"
