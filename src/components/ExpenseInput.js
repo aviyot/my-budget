@@ -21,36 +21,45 @@ const ExpenseInput = (props) => {
   };
 
   return (
-    <div className="position-fixed shadow p-3 mb-5 bg-white rounded" id="expense-edit">
-      <div >
-      <button type="button" className="close" aria-label="Close" onClick={closeForm}>
-  <span aria-hidden="true">&times;</span>
-</button>
-        <form>
-          <div>
-            <div>
-              <label>Expense</label>
-              <input
-                type="text"
-                id="name"
-                value={dataUI.currentExpense.name}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label>Amount</label>
-              <input
-                type="number"
-                id="amount"
-                value={dataUI.currentExpense.amount}
-                onChange={handleChange}
-              />
-            </div>
+    <div id="expense-edit" className="card p-2">
+      <div>
+        <button
+          type="button"
+          className="close"
+          aria-label="Close"
+          onClick={closeForm}
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <form
+          className="d-flex flex-wrap justify-content-between"
+          style={{ gap: "1rem" }}
+        >
+          <div className="form-group">
+            <label>Expense</label>
+            <input
+              className="form-control"
+              type="text"
+              id="name"
+              value={dataUI.currentExpense.name}
+              onChange={handleChange}
+            />
           </div>
-          <div>
+          <div className="form-group">
+            <label>Amount</label>
+            <input
+              className="form-control"
+              type="number"
+              id="amount"
+              value={dataUI.currentExpense.amount}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
             <label>Category</label>
 
             <select
+              className="form-control"
               value={dataUI.currentExpense.category}
               id="category"
               onChange={handleChange}
@@ -65,9 +74,10 @@ const ExpenseInput = (props) => {
             </select>
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Pay Method</label>
             <select
+              className="form-control"
               id="methodPay"
               value={dataUI.currentExpense.methodPay}
               onChange={handleChange}
@@ -87,52 +97,56 @@ const ExpenseInput = (props) => {
             </select>
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Pay Freq</label>
             <input
+              className="form-control"
               type="text"
               id="freq_pay"
               value={dataUI.currentExpense.freq_pay}
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>beneficiary</label>
             <input
+              className="form-control"
               type="text"
               id="benef"
               value={dataUI.currentExpense.benef}
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Commitment Date</label>
             <input
+              className="form-control"
               type="date"
               id="commitDate"
               value={dataUI.currentExpense.commitDate}
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Frist Pay </label>
             <input
+              className="form-control"
               type="date"
               id="fristPayDate"
               value={dataUI.currentExpense.fristPayDate}
               onChange={handleChange}
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Pay Mumber</label>
             <input
+              className="form-control"
               type="number"
               id="numberOfPay"
               value={dataUI.currentExpense.numberOfPay}
               onChange={handleChange}
             />
           </div>
-          <div></div>
         </form>
         <DataAction />
       </div>

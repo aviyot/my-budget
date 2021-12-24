@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import firebase from "../../config/fbConfig";
 
-const SignIn = props => {
+const SignIn = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,12 +10,12 @@ const SignIn = props => {
 
   const textAlign = { textAlign: "center" };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     if (e.target.id === "email") setEmail(e.target.value);
     if (e.target.id === "password") setPassword(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     firebase
       .auth()
@@ -23,24 +23,19 @@ const SignIn = props => {
       .then(() => {
         history.push("/home");
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err.code);
       });
   };
 
   return (
-    <div  class="container">
-      <h1 >
-        Sign In
-      </h1>
-      <form
-      
-        onSubmit={handleSubmit}
-        style={textAlign}
-      >
-        <div>
+    <div class="container">
+      <h1>Sign In</h1>
+      <form onSubmit={handleSubmit} style={textAlign}>
+        <div className="form-group">
           <label>Email</label>
           <input
+            class="form-control"
             type="email"
             onChange={handleChange}
             name="email"
@@ -50,9 +45,10 @@ const SignIn = props => {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Password</label>
           <input
+            class="form-control"
             type="password"
             onChange={handleChange}
             name="password"
@@ -61,12 +57,7 @@ const SignIn = props => {
             required
           />
         </div>
-        <input
-          className="btn"
-          type="submit"
-          value="SIGNIN"
-         
-        />
+        <input className="btn" type="submit" value="SIGNIN" />
       </form>
     </div>
   );

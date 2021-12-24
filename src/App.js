@@ -1,4 +1,4 @@
-import React, { useState,useReducer } from "react";
+import React, { useState, useReducer } from "react";
 import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import firebase from "./config/fbConfig";
 import ExpensesContext from "./contexts/contextStore";
@@ -12,7 +12,7 @@ function App() {
 
   const [expenses, dispatch] = useReducer(expensesReducer, [], () => {});
 
-  firebase.auth().onAuthStateChanged(function(user) {
+  firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       setUserSignIn(true);
       setAuthState(true);
@@ -21,14 +21,14 @@ function App() {
       setAuthState(true);
     }
   });
-  
+
   return (
-    <ExpensesContext.Provider value={{ expenses, dispatch}}>
-      <div>
+    <ExpensesContext.Provider value={{ expenses, dispatch }}>
+      <div className="container">
         {authState && (
           <Router>
             <Navigator logIn={userSignIn} />
-            {userSignIn ? <Redirect to="/home" /> : <Redirect to="/welcome"/>}
+            {userSignIn ? <Redirect to="/home" /> : <Redirect to="/welcome" />}
           </Router>
         )}
       </div>
