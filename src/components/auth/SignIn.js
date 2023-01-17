@@ -29,13 +29,13 @@ const SignIn = (props) => {
   };
 
   return (
-    <div class="container">
+    <div>
       <h1>Sign In</h1>
       <form onSubmit={handleSubmit} style={textAlign}>
         <div className="form-group">
           <label>Email</label>
           <input
-            class="form-control"
+            className="form-control"
             type="email"
             onChange={handleChange}
             name="email"
@@ -48,7 +48,7 @@ const SignIn = (props) => {
         <div className="form-group">
           <label>Password</label>
           <input
-            class="form-control"
+            className="form-control"
             type="password"
             onChange={handleChange}
             name="password"

@@ -31,14 +31,14 @@ const SignUp = (props) => {
     }
   };
   return (
-    <div class="container">
+    <div>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>User Name</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             placeholder="Enter user name"
             id="display_name"
             name="display_name"
@@ -48,7 +48,7 @@ const SignUp = (props) => {
         <div className="form-group">
           <label>Email</label>
           <input
-            class="form-control"
+            classNam="form-control"
             type="email"
             name="email"
             id="email"
@@ -60,7 +60,7 @@ const SignUp = (props) => {
         <div className="form-group">
           <label>Password</label>
           <input
-            class="form-control"
+            className="form-control"
             type="password"
             name="password"
             id="password"
@@ -72,7 +72,7 @@ const SignUp = (props) => {
         <div className="form-group">
           <label>Re Enter Password </label>
           <input
-            class="form-control"
+            className="form-control"
             type="password"
             name="password_rep"
             id="password_rep"

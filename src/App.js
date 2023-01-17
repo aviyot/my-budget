@@ -24,7 +24,7 @@ function App() {
 
   return (
     <ExpensesContext.Provider value={{ expenses, dispatch }}>
-      <div className="container">
+      <div>
         {authState && (
           <Router>
             <Navigator logIn={userSignIn} />
